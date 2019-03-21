@@ -1,0 +1,11 @@
+[package]
+name = "s3-syncer"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+rusoto_core = "*"
+rusoto_s3 = "*"
+actix-web = "*"
+futures = "*"
+failure = "*"
