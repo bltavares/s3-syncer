@@ -10,12 +10,12 @@ action "only-master" {
 
 action "autobump" {
   needs = "only-master"
-  uses = "bltavares/actions/autobump@rustreleaser"
+  uses = "docker://bltavares/actions:autobump"
   secrets = ["GITHUB_TOKEN"]
 }
 
 action "latest-linux" {
-  uses = "bltavares/actions/rust-releaser/x86_64-unknown-linux-musl@rustreleaser"
+  uses = "docker://rustreleaser/action:x86_64-unknown-linux-musl"
   needs = ["autobump"]
   secrets = ["GITHUB_TOKEN"]
 
@@ -25,7 +25,7 @@ action "latest-linux" {
 }
 
 action "latest-windows" {
-  uses = "bltavares/actions/rust-releaser/x86_64-unknown-linux-musl@rustreleaser"
+  uses = "docker://rustreleaser/action:x86_64-unknown-linux-musl"
   needs = ["autobump"]
   secrets = ["GITHUB_TOKEN"]
 
@@ -35,7 +35,7 @@ action "latest-windows" {
 }
 
 action "latest-static" {
-  uses = "bltavares/actions/rust-releaser/x86_64-unknown-linux-musl@rustreleaser"
+  uses = "docker://rustreleaser/action:x86_64-unknown-linux-musl"
   needs = ["autobump"]
   secrets = ["GITHUB_TOKEN"]
 
@@ -50,7 +50,7 @@ workflow "release" {
 }
 
 action "release-static" {
-  uses = "bltavares/actions/rust-releaser/x86_64-unknown-linux-musl@rustreleaser"
+  uses = "docker://rustreleaser/action:x86_64-unknown-linux-musl"
   secrets = ["GITHUB_TOKEN"]
 
   env = {
@@ -59,7 +59,7 @@ action "release-static" {
 }
 
 action "release-linux" {
-  uses = "bltavares/actions/rust-releaser/x86_64-unknown-linux-gnu@rustreleaser"
+  uses = "docker://rustreleaser/action:x86_64-unknown-linux-gnu"
   secrets = ["GITHUB_TOKEN"]
 
   env = {
@@ -68,7 +68,7 @@ action "release-linux" {
 }
 
 action "release-windows" {
-  uses = "bltavares/actions/rust-releaser/x86_64-pc-windows-gnu@rustreleaser"
+  uses = "docker://rustreleaser/action:x86_64-pc-windows-gnu"
   secrets = ["GITHUB_TOKEN"]
 
   env = {
